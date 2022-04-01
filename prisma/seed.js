@@ -5,13 +5,30 @@ async function seed() {
 
     await prisma.user.create({
         data: { username: 'bill1',
-              email: 'bill@gmail.com',
-              profile: {
-                  create: {
-                      bio: "ok",
-                      profilePicURL: 'https://bill.com/pic'
-                    }
+            email: 'bill@gmail.com',
+            profile: {
+                create: {
+                    bio: "ok",
+                    profilePicURL: 'https://bill.com/pic'
                 }
+            },
+            posts : {
+                create: [
+                    { title: 'Ok',
+                    content: 'Lorem ipsum',
+                    comments: {
+                        create: [
+                            {content: 'hi :)'},
+                            {content: 'nice!'}
+                        ]
+                        }
+                    },
+                    { title: 'LOLZ',
+                    content: 'funniiii',
+                    picURL: 'google.com/pics2'
+                    }
+                ]
+            }
               }
     });
     await prisma.user.create({
@@ -22,20 +39,19 @@ async function seed() {
                         bio: "yup",
                         profilePicURL: 'https://alice.com/pic'
                     }
+                },
+                posts : {
+                    create: [
+                        { title: 'Update',
+                        content: 'Lorem ipsum',
+                      },
+                      { title: 'LOL',
+                        content: 'funny',
+                        picURL: 'google.com/pics'
+                      }
+                    ]
                 }
             }
-    });
-
-    await prisma.post.createMany({
-        data: [
-            { title: 'Update',
-              content: 'Lorem ipsum',
-            },
-            { title: 'LOL',
-              content: 'funny',
-              picURL: 'google.com/pics'
-            }
-            ]
     });
 
     // Add your code here
