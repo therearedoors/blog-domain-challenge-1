@@ -18,7 +18,13 @@ async function seed() {
                     content: 'Lorem ipsum',
                     comments: {
                         create: [
-                            {content: 'hi :)'},
+                            {content: 'hi :)',
+                            replies: {
+                                create: [
+                                    {content: 'bye'}
+                                ]
+                            }
+                        },
                             {content: 'nice!'}
                         ]
                         }
